@@ -1,5 +1,0 @@
-Views
-=====
-
-.. automodule:: views
-    :members:

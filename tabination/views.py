@@ -27,8 +27,8 @@ class TabView(TemplateView):
 
     Internally, the tabs are tracked using the :class:`_TabTracker`
     `metaclass <http://stackoverflow.com/a/6581949/284318>`_.
-    All subclasses that have set the `_is_tab` attribute are added to the
-    `self._registry` list.
+    All subclasses that have set the ``_is_tab`` attribute are added to the
+    ``self._registry`` list.
     
     """
 
@@ -38,9 +38,9 @@ class TabView(TemplateView):
     tab_id = None
     """ID of the tab, can be used for URL, CSS classes and more."""
     tab_label = None
-    """Label for the tab. If label is `None`, tab should be hidden."""
+    """Label for the tab. If label is ``None``, tab should be hidden."""
     tab_group = None
-    """All tabs with the same group string will be contained in `{{ tabs }}`."""
+    """All tabs with the same group string will be contained in ``{{ tabs }}``."""
     tab_counter = None
     """A string or callable with a count that can be shown on the tab."""
     tab_classes = []
@@ -61,7 +61,7 @@ class TabView(TemplateView):
     @property
     def tab_visible(self):
         """Whether or not this tab is shown in the tab group. Or to be more exact,
-        whether or not this tab is contained in `{{ tabs }}`.
+        whether or not this tab is contained in ``{{ tabs }}``.
         
         The default behavior is to set the tab as visible if it has a label.
         
@@ -70,7 +70,7 @@ class TabView(TemplateView):
     
     def get_context_data(self, **kwargs):
         """Add tab information to context. To retrieve list of all group tab
-        instances, use `{{ tabs }}` in your template."""
+        instances, use ``{{ tabs }}`` in your template."""
 
         # Get base context
         context = super(TabView, self).get_context_data()

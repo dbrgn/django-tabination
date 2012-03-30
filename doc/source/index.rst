@@ -11,7 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   views
+   installation
+   usage
+   tabview
 
 
 Indices and tables

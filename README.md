@@ -6,7 +6,7 @@ django-tabination is a lightweight library that enables you to easily build your
 Docs
 ----
 
-The docs can be found at http://readthedocs.org/dashboard/django-tabination/.
+The docs can be found at http://django-tabination.readthedocs.org/.
 
 Changelog
 ---------

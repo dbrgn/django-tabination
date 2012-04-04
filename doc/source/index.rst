@@ -6,7 +6,8 @@
 django-tabination
 =================
 
-Contents:
+`django-tabination` is a library that enables you to easily build your own tab
+navigation based on class based views.
 
 .. toctree::
    :maxdepth: 2

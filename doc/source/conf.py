@@ -16,9 +16,9 @@ import sys, os
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-print os.path.abspath('../../tabination')
 sys.path.insert(0, os.path.abspath('../../tabination'))
-sys.path.insert(1, os.path.abspath('/var/www/databot/front'))
+open('../../tabination/dummy_settings.py', 'w').close()  # create dummy file
+os.environ['DJANGO_SETTINGS_MODULE'] = 'dummy_settings'
 
 # -- General configuration -----------------------------------------------------
 

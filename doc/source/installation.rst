@@ -42,3 +42,9 @@ Currently there is no further configuration needed to use *django-tabination*.
             'tabination',
             # other apps...
         )
+
+
+Sourcecode
+----------
+
+The sourcecode of *django-tabination* can be forked on Github: https://github.com/FactorAG/django-tabination.

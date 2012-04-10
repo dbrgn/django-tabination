@@ -29,7 +29,7 @@ class TabView(TemplateView):
     `metaclass <http://stackoverflow.com/a/6581949/284318>`_.
     All subclasses that have set the ``_is_tab`` attribute are added to the
     ``self._registry`` list.
-    
+
     """
 
     __metaclass__ = _TabTracker
@@ -62,12 +62,12 @@ class TabView(TemplateView):
     def tab_visible(self):
         """Whether or not this tab is shown in the tab group. Or to be more exact,
         whether or not this tab is contained in ``{{ tabs }}``.
-        
+
         The default behavior is to set the tab as visible if it has a label.
-        
+
         """
         return self.tab_label is not None
-    
+
     def get_context_data(self, **kwargs):
         """Add tab information to context. To retrieve list of all group tab
         instances, use ``{{ tabs }}`` in your template."""
@@ -78,8 +78,15 @@ class TabView(TemplateView):
         # Update the context with kwargs, as TemplateView doesn't do this
         context.update(kwargs)
 
-        # Get all visible group tabs
-        tabs = [t for t in self.get_group_tabs() if t.tab_visible]
+        # Get all group tabs
+        tabs = [t for t in self.get_group_tabs()]
+
+        # Add reference to current tab to all other tabs
+        for t in tabs:
+            t.current_tab = self
+
+        # Remove all tabs that shouldn't be visible
+        tabs = filter(lambda t: t.tab_visible, tabs)
 
         # We need tab instances of all tab group members in order to
         # be able to use instance methods.

@@ -15,7 +15,7 @@ your project is using function based views.
 Creating tab views
 ------------------
 
-For a working custom tab view, five things are requried:
+For a working custom tab view, the following things are requried:
 
 * You need to extend the |TabView| base class
 * You need to add the class attribute ``_is_tab = True`` to your view
@@ -23,6 +23,7 @@ For a working custom tab view, five things are requried:
 * Each tab needs a ``tab_id``.
 * In order for the tab to be visible in your navigation, you need to
   set a ``tab_label``.
+* You need to define a ``template_name``.
 
 .. note::
 
@@ -45,21 +46,29 @@ This is a very simple example tab::
         tab_id = 'spam'
         tab_group = 'main_navigation'
         tab_label = 'Spam'
+        template_name = 'tabs/spam_tab.html'
 
-This tab fulfils all the requirements, but does not render any response yet.
-In order to render a response, you could use `generic view mixins
-<https://docs.djangoproject.com/en/dev/ref/class-based-views/#mixins>`_::
+Now your page will be rendered using the template `tabs/spam_tab.html`, because
+|TabView| extends Django's generic `TemplateView`.
 
-    from django.views.generic.base import TemplateResponseMixin
+If you want, you can also use other `generic view mixins
+<https://docs.djangoproject.com/en/dev/ref/class-based-views/#mixins>`_ (or any
+other custom mixins) to provide additional functionality. A good example would
+be the `SingleObjectMixin`::
 
-    class SpamTab(TemplateResponseMixin, TabView):
+    from django.views.generic.detail import SingleObjectMixin
+
+    class SpamTab(SingleObjectMixin, TabView):
         _is_tab = True
         tab_id = 'spam'
         tab_group = 'main_navigation'
         tab_label = 'Spam'
         template_name = 'tabs/spam_tab.html'
+        model = models.SpamCan
 
-Now your page will be rendered using the template `tabs/spam_tab.html`.
+Now the `SpamCan` object with a primary key provided from your URL definition
+will be passed on to your template as ``object`` (see
+`<https://docs.djangoproject.com/en/dev/ref/class-based-views/#singleobjectmixin>`_).
 
 You can do everything with your TabView that you can do with normal class
 based views. The only things that you need to bear in mind is that 

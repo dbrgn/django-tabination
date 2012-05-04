@@ -77,14 +77,15 @@ will be passed on to your template as ``object`` (see
     not call ``super()``). This is fixed in the current development version
     (see `Ticket #16074 <https://code.djangoproject.com/ticket/16074>`_) and
     will most probably be included in the next Django release. In the meantime,
-    you can either use generic mixins that don't affect ``get_context_data` or
-    write your own mixins. See the next section for an example.
+    you can either use generic mixins that don't affect ``get_context_data``,
+    manually call ``TabView.get_context_data(self, **kwargs)`` from your tab
+    code or create your own mixins. See the next section for an example.
 
 You can do everything with your TabView that you can do with normal class
 based views. The only things that you need to bear in mind is that 
 |TabView| always needs to be the base class (on the right side of the
 parentheses). It may be overloaded using mixins but cannot be combined with
-other views.
+other views that override ``get_context_data``.
 
 Customizing your tab view
 +++++++++++++++++++++++++
@@ -180,6 +181,23 @@ therefore not shown at all (see default behavior of
     you need to call the superclasses' versions of the method first (like in
     the example above). Otherwise, you'll override the ``tabs`` context
     variable.
+
+Accessing request data
+++++++++++++++++++++++
+
+If you want to access ``self.request`` from your tab, you may notice that it is
+not available. This is because the tab instances other than your current tab
+don't pass through the request dispatching functions.
+
+If you need access to your current request information, you can access it via
+the ``self.current_tab`` attribute, e.g.::
+
+    class SpamTab(TabView):
+        # (...)
+        def username(self):
+            current_tab = self.current_tab
+            user = current_tab.request.user
+            return user.username
 
 
 Tab navigation template

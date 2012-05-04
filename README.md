@@ -1,12 +1,21 @@
 django-tabination
 =================
 
-django-tabination is a lightweight library that enables you to easily build your own tab navigation based on class based views.
+_django-tabination_ is a lightweight library that enables you to easily build your own tab
+navigation based on class based views.
 
 Docs
 ----
 
 The docs can be found at http://django-tabination.readthedocs.org/.
+
+Installing
+----------
+
+You can install _django-tabination_ directly from pypi using pip (recommended) or easy\_install:
+
+    $ pip install django-tabination
+    $ easy_install install django-tabination
 
 Changelog
 ---------

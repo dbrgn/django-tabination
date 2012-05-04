@@ -176,16 +176,18 @@ Tab navigation template
 -----------------------
 
 In order to display the tabs in your templates, you need to create a tab list
-using the ``{{ tabs }}`` context variable. Here is an example template:
+using the ``{{ tabs }}`` context variable. You can also use
+``{{ current_tab_id }}`` to access the id of the currently active tab. Here is
+an example template:
 
 .. code-block:: guess
 
     <div id="tab_navigation">
         <ul>
             {% for tab in tabs %}
-                <li class="{{ tab.tab_classes|join:" " }}{% if tab.tab_id == current_tab %} active{% endif %}">
+                <li class="{{ tab.tab_classes|join:" " }}{% if tab.tab_id == current_tab_id %} active{% endif %}">
                     <a href="/tabs/{{ tab.id }}.html" {%if tab.tab_rel %}rel="{{ tab.tab_rel }}"{% endif %}>
-                    {% if tab.tab_counter %}<em>{{ tab.tab_counter|thousand_separator }}</em>{% endif %}
+                    {% if tab.tab_counter %}<em>{{ tab.tab_counter }}</em>{% endif %}
                     {{ tab.tab_label }}
                     </a>
                 </li>

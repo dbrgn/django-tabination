@@ -85,6 +85,9 @@ class TabView(TemplateView):
         for t in tabs:
             t.current_tab = self
 
+        # Add current tab id to context
+        context['current_tab_id'] = self.tab_id
+
         # Remove all tabs that shouldn't be visible
         tabs = filter(lambda t: t.tab_visible, tabs)
 

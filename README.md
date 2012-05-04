@@ -11,6 +11,10 @@ The docs can be found at http://django-tabination.readthedocs.org/.
 Changelog
 ---------
 
+v0.1.1 (2012-05-04)
+
+- [add] Added `current_tab_id` to context by default
+
 v0.1.0 (2012-04-04)
 
 - [add] Initial version

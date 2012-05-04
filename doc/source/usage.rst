@@ -186,7 +186,7 @@ Accessing request data
 ++++++++++++++++++++++
 
 If you want to access ``self.request`` in a function used to render the tab
-item in your tmeplate, you may notice that it is not available. This is
+item in your template, you may notice that it is not available. This is
 because the tab instances other than your current tab don't pass through the
 request dispatching functions.
 

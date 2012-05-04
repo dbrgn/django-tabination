@@ -70,6 +70,16 @@ Now the `SpamCan` object with a primary key provided from your URL definition
 will be passed on to your template as ``object`` (see
 `<https://docs.djangoproject.com/en/dev/ref/class-based-views/#singleobjectmixin>`_).
 
+.. warning::
+
+    As of Django 1.4, above example does not work due to a bug in the class
+    based views implementation (``get_context_data`` in the generic mixins does
+    not call ``super()``). This is fixed in the current development version
+    (see `Ticket #16074 <https://code.djangoproject.com/ticket/16074>`_) and
+    will most probably be included in the next Django release. In the meantime,
+    you can either use generic mixins that don't affect ``get_context_data` or
+    write your own mixins.
+
 You can do everything with your TabView that you can do with normal class
 based views. The only things that you need to bear in mind is that 
 |TabView| always needs to be the base class (on the right side of the

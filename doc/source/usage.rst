@@ -78,7 +78,7 @@ will be passed on to your template as ``object`` (see
     (see `Ticket #16074 <https://code.djangoproject.com/ticket/16074>`_) and
     will most probably be included in the next Django release. In the meantime,
     you can either use generic mixins that don't affect ``get_context_data` or
-    write your own mixins.
+    write your own mixins. See the next section for an example.
 
 You can do everything with your TabView that you can do with normal class
 based views. The only things that you need to bear in mind is that 

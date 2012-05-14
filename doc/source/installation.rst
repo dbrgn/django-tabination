@@ -8,9 +8,9 @@ installing a copy of the library.
 Automatic installation via a package manager
 --------------------------------------------
 
-You can easily install *django-tabination* using pip::
+You can install *django-tabination* directly from pypi using pip::
 
-    pip install -e git://github.com/FactorAG/django-tabination.git#egg=tabination
+    pip install django-tabination
 
 
 Manual installation from a downloaded package

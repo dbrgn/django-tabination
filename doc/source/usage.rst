@@ -99,13 +99,11 @@ For available attributes, see |TabView| documentation. You can also create your
 own attributes, as long as they're used in your template.
 
 Keep in mind that if the tab you're working with is not the currently loaded
-tab, it is just an empty instance of the tab that hasn't passed through the
-dispatching functions. The request can be accessed via ``self.request``, but
-sometimes that's not enough, e.g. if you want to access ``self.kwargs``. In
-case you need some variables that you get only by dispatching the request, you
-can use the special attribute ``self.current_tab`` to gain access to the
-currently loaded tab (usually the important url kwargs are available across all
-tabs).
+tab, it is just an instance of the tab that has not passed through the
+dispatching functions. In case you need some variables that you get only by
+dispatching the request (e.g. ``self.kwargs``), you can use the special
+attribute ``self.current_tab`` to gain access to the currently loaded tab.
+See also section :ref:`accessing-request-data`.
 
 Here is an example of a more sophisticated tab view hierarchy::
 
@@ -181,6 +179,8 @@ therefore not shown at all (see default behavior of
     you need to call the superclasses' versions of the method first (like in
     the example above). Otherwise, you'll override the ``tabs`` context
     variable.
+
+.. _accessing-request-data:
 
 Accessing request data
 ++++++++++++++++++++++

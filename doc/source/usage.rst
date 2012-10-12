@@ -111,6 +111,7 @@ Here is an example of a more sophisticated tab view hierarchy::
     from django.views.generic.base import TemplateResponseMixin
     from django.utils.translation import ugettext as _
 
+
     class MainNavigationBaseTab(TemplateResponseMixin, TabView):
         """Base class for all main navigation tabs."""
         tab_group = 'main_navigation'
@@ -120,6 +121,7 @@ Here is an example of a more sophisticated tab view hierarchy::
             context = super(MainNavigationBaseTab, self).get_context_data(**kwargs)
             context['spam'] = 'ham'
             return context
+
 
     class SpamTab(MainNavigationBaseTab):
         _is_tab = True
@@ -147,6 +149,7 @@ Here is an example of a more sophisticated tab view hierarchy::
             if self.request.user.is_authenticated():
                 classes += ['logged_in_only']
             return classes
+
 
     class HiddenTab(MainNavigationBaseTab):
         _is_tab = True

@@ -31,7 +31,7 @@ v0.1.0 (2012-04-04)
 License
 -------
 
-Copyright 2012 Factor AG (http://factor.ch/)
+Copyright 2012 Danilo Bargen (http://dbrgn.ch/)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU
 Lesser General Public License as published by the Free Software Foundation, either version 3 of the

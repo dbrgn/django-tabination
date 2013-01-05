@@ -47,4 +47,4 @@ Currently there is no further configuration needed to use *django-tabination*.
 Sourcecode
 ----------
 
-The sourcecode of *django-tabination* can be forked on Github: https://github.com/gwrtheyrn/django-tabination.
+The sourcecode of *django-tabination* can be forked on Github: https://github.com/dbrgn/django-tabination.

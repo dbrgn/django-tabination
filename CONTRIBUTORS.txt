@@ -1,0 +1,10 @@
+Main Authors
+------------
+
+Danilo Bargen (dbrgn)
+
+
+Contributors
+------------
+
+Markus Zapke-Gründemann (keimlink) – Patches

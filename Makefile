@@ -27,7 +27,7 @@ report: flake8 test
 
 report-html: flake8 test
 	coverage html --omit=tabination/test*
-	open htmlcov/index.html
+	@python -c "import os, webbrowser; webbrowser.open('file://%s/htmlcov/index.html' % os.getcwd())"
 
 clean:
 	rm -f .coverage

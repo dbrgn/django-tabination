@@ -5,3 +5,5 @@ dist
 doc/build
 build
 htmlcov
+*.swp
+*.log

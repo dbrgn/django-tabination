@@ -50,11 +50,11 @@ To run the test suite, use ::
 
 If you want to generate a coverage report, use ::
 
-    $ make coverage
+    $ make report
 
 To see a HTML version of the coverage report, there's ::
 
-    $ make coverage-html
+    $ make report-html
 
 Finally, to check conformance to the PEP8 coding standard, use ::
 

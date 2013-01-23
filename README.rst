@@ -2,8 +2,8 @@ django-tabination
 =================
 
 
-*django-tabination* is a lightweight library that enables you to easily build
-your own tab navigation based on class based views.
+*django-tabination* is a very lightweight (~35 SLOC) library that enables you to
+easily build your own tab navigation based on class based views.
 
 
 Docs
@@ -19,13 +19,16 @@ You can install *django-tabination* directly from pypi using pip::
 
     $ pip install django-tabination
 
+Currently there is no further configuration needed. For more information about
+setup and usage, please refer to `the docs`_.
+
 
 Changelog
 ---------
 
 v0.1.1 (2012-05-04)
 
-- [add] Added `current_tab_id` to context by default
+- [add] Added ``current_tab_id`` to context by default
 
 v0.1.0 (2012-04-04)
 
@@ -75,4 +78,7 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License along
-with this program.  If not, see http://www.gnu.org/licenses/lgpl.html.
+with this program. If not, see http://www.gnu.org/licenses/lgpl.html.
+
+
+.. _the docs: http://django-tabination.readthedocs.org/en/latest/installation.html

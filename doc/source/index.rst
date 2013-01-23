@@ -14,6 +14,7 @@ navigation based on class based views.
 
    installation
    usage
+   testing
    tabview
 
 

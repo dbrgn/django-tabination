@@ -2,8 +2,8 @@ django-tabination
 =================
 
 
-*django-tabination* is a very lightweight (~35 SLOC) library that enables you to
-easily build your own tab navigation based on class based views.
+*django-tabination* is a very lightweight (~35 SLOC) Django 1.4+ library that
+enables you to easily build your own tab navigation based on class based views.
 
 
 Docs

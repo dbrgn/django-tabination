@@ -8,6 +8,4 @@ install:
     - pip install -q Django==$DJANGO_VERSION --use-mirrors
     - make install
 script:
-    - make test
     - make report
-    - make flake8

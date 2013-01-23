@@ -17,7 +17,7 @@ install:
 	@echo "Please don't forget to run 'pip install Django'"
 
 flake8:
-	flake8 tabination --ignore=E128,E501
+	flake8 tabination --ignore=E128 --max-line-length=99
 
 test:
 	coverage run --branch --source=tabination `which django-admin.py` test --settings=tabination.test_settings tabination

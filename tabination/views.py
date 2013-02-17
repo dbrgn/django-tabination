@@ -110,10 +110,10 @@ class TabView(TemplateView):
 
         If the current tab has a parent tab the parent's id is added to
         the template context as ``parent_tab_id``. Instances of all tabs
-        of the parent level are added as ``tabs_parent`` to the context.
+        of the parent level are added as ``parent_tabs`` to the context.
 
         If the current tab has children they are added to the template
-        context as ``tabs_children``.
+        context as ``child_tabs``.
         """
         context = super(TabView, self).get_context_data()
 
@@ -128,9 +128,9 @@ class TabView(TemplateView):
                 msg = '%s has no attribute _is_tab' % self.tab_parent.__class__.__name__
                 raise ImproperlyConfigured(msg)
             context['parent_tab_id'] = self.tab_parent().tab_id
-            context['tabs_parent'] = self.tab_parent().get_visible_tabs()
+            context['parent_tabs'] = self.tab_parent().get_visible_tabs()
 
         if self.tab_id in self._children:
-            context['tabs_children'] = [t() for t in self._children[self.tab_id]]
+            context['child_tabs'] = [t() for t in self._children[self.tab_id]]
 
         return context

@@ -76,10 +76,10 @@ class MultilevelTest(unittest.TestCase):
         request = self.rf.get('/')
         response = FirstChildTab.as_view()(request)
         context = response.context_data
-        self.assertIsInstance(context['tabs_parent'], list)
-        self.assertEqual(len(context['tabs_parent']), 2)
-        self.assertIsInstance(context['tabs_parent'][0], ParentTab)
-        self.assertIsInstance(context['tabs_parent'][1], EmptyTab)
+        self.assertIsInstance(context['parent_tabs'], list)
+        self.assertEqual(len(context['parent_tabs']), 2)
+        self.assertIsInstance(context['parent_tabs'][0], ParentTab)
+        self.assertIsInstance(context['parent_tabs'][1], EmptyTab)
         self.assertEqual(context['parent_tab_id'], ParentTab.tab_id)
 
     def test_children(self):
@@ -87,17 +87,17 @@ class MultilevelTest(unittest.TestCase):
         request = self.rf.get('/')
         response = ParentTab.as_view()(request)
         context = response.context_data
-        self.assertIsInstance(context['tabs_children'], list)
-        self.assertEqual(len(context['tabs_children']), 2)
-        self.assertIsInstance(context['tabs_children'][0], FirstChildTab)
-        self.assertIsInstance(context['tabs_children'][1], SecondChildTab)
+        self.assertIsInstance(context['child_tabs'], list)
+        self.assertEqual(len(context['child_tabs']), 2)
+        self.assertIsInstance(context['child_tabs'][0], FirstChildTab)
+        self.assertIsInstance(context['child_tabs'][1], SecondChildTab)
 
     def test_parent_none(self):
         """If tab_parent is not configured it is missing from context."""
         request = self.rf.get('/')
         response = ParentTab.as_view()(request)
         with self.assertRaises(KeyError):
-            response.context_data['tabs_parent']
+            response.context_data['parent_tabs']
 
     def test_parent_not__is_tab(self):
         """Using a TabView as parent which has not _is_tab = True fails."""

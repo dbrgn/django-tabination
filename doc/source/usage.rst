@@ -285,13 +285,13 @@ If the current tab has a parent tab the following values are added:
 ``parent_tab_id``
     The ``tab_id`` of the parent tab.
 
-``tabs_parent``
+``parent_tabs``
     Instances of all tabs at the parent level.
 
 The following variable is added to the template context if the current
 tab is a parent tab and has one or more children:
 
-``tabs_children``
+``child_tabs``
     A list of instances of all child tabs.
 
 This is an example how to use multilevel navigation in your templates:
@@ -299,9 +299,9 @@ This is an example how to use multilevel navigation in your templates:
 .. code-block:: html+django
 
     <div id="tab_navigation">
-        {% if tabs_parent %}
+        {% if parent_tabs %}
         <ul>
-                {% for tab in tabs_parent %}
+                {% for tab in parent_tabs %}
                     <li class="{{ tab.tab_classes|join:" " }}{% if tab.tab_id == parent_tab_id %} active{% endif %}">
                         <a href="/{{ tab.tab_id }}/" {%if tab.tab_rel %}rel="{{ tab.tab_rel }}"{% endif %}>
                         {{ tab.tab_label }}
@@ -319,9 +319,9 @@ This is an example how to use multilevel navigation in your templates:
                 </li>
             {% endfor %}
         </ul>
-        {% if tabs_children %}
+        {% if child_tabs %}
         <ul>
-                {% for tab in tabs_children %}
+                {% for tab in child_tabs %}
                     <li class="{{ tab.tab_classes|join:" " }}">
                         <a href="/{{ tab.tab_id }}/" {%if tab.tab_rel %}rel="{{ tab.tab_rel }}"{% endif %}>
                         {{ tab.tab_label }}

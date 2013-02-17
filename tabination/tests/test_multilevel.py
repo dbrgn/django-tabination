@@ -2,6 +2,10 @@ from django.core.exceptions import ImproperlyConfigured
 from django.test.client import RequestFactory
 from django.utils import unittest
 
+# The code below is used with the test suite and is included in the
+# documentation. If you change the code please make sure tests and
+# documentation are still intact.
+
 from tabination.views import TabView
 
 # First navigation level

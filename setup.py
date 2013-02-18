@@ -3,9 +3,12 @@
 from setuptools import setup
 import tabination
 
+readme = open('README.rst').read()
+
 setup(name='django-tabination',
       version=tabination.__VERSION__,
       description='A library that enables you to easily build your own tab navigation based on class based views.',
+      long_description=readme,
       author=tabination.__AUTHOR__,
       author_email=tabination.__AUTHOR_EMAIL__,
       url='https://github.com/dbrgn/django-tabination',

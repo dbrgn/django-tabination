@@ -8,8 +8,8 @@ from django.utils import unittest
 
 from tabination.views import TabView
 
-# First navigation level
 
+# First navigation level
 
 class ParentNavigationBaseTab(TabView):
     """Base class for all parent navigation tabs."""
@@ -30,8 +30,8 @@ class EmptyTab(ParentNavigationBaseTab):
     tab_label = 'Empty'
     template_name = 'empty_tab.html'
 
-# Second navigation level
 
+# Second navigation level
 
 class ChildNavigationBaseTab(TabView):
     """Base class for all child navigation tabs."""

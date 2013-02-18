@@ -10,8 +10,6 @@ The library is strongly based on the `class based views`_ that Django
 has introduced with version 1.3. You cannot use this library if your
 project is using function based views.
 
-.. _class based views: https://docs.djangoproject.com/en/1.4/topics/class-based-views/
-
 
 Creating tab views
 ------------------
@@ -66,13 +64,9 @@ be the `SingleObjectMixin`::
         template_name = 'tabs/spam_tab.html'
         model = models.SpamCan
 
-.. _generic view mixins: https://docs.djangoproject.com/en/1.4/ref/class-based-views/#mixins
-
 Now the `SpamCan` object with a primary key provided from your URL
 definition will be passed on to your template as ``object`` (see
 `SingleObjectMixin documentation`_).
-
-.. _SingleObjectMixin Documentation: https://docs.djangoproject.com/en/1.4/ref/class-based-views/#singleobjectmixin
 
 .. warning::
 
@@ -85,7 +79,6 @@ definition will be passed on to your template as ``object`` (see
     tab code or create your own mixins. See the next section for an
     example.
 
-.. _Ticket #16074: https://code.djangoproject.com/ticket/16074
 
 You can do everything with your TabView that you can do with normal
 class based views. The only things that you need to bear in mind is that
@@ -100,7 +93,6 @@ You can further customize your tab view by overloading the |TabView|'s
 class attributes with your own class- or instance attributes or
 properties_ (if logic is required).
 
-.. _properties: http://docs.python.org/library/functions.html#property
 
 For available attributes, see |TabView| documentation. You can also
 create your own attributes, as long as they're used in your template.
@@ -331,3 +323,10 @@ This is an example how to use multilevel navigation in your templates:
         </ul>
         {% endif %}
     </div>
+
+
+.. _class based views: https://docs.djangoproject.com/en/1.4/topics/class-based-views/
+.. _generic view mixins: https://docs.djangoproject.com/en/1.4/ref/class-based-views/#mixins
+.. _properties: http://docs.python.org/library/functions.html#property
+.. _singleobjectmixin documentation: https://docs.djangoproject.com/en/1.4/ref/class-based-views/#singleobjectmixin
+.. _ticket #16074: https://code.djangoproject.com/ticket/16074

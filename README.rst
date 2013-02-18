@@ -9,6 +9,10 @@ django-tabination
 *django-tabination* is a lightweight (~50 SLOC) Django 1.4+ library that enables
 you to easily build your own tab navigation based on class based views.
 
+It supports code based creation of tabs directly in your views, conditional
+displaying/hiding of a tab, translation of the tab labels, multi-level tab
+navigations and more.
+
 
 Docs
 ----

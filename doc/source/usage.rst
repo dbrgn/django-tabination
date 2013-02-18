@@ -226,10 +226,10 @@ Tab navigation template
 
 In order to display the tabs in your templates, you need to create a tab
 list using the ``{{ tabs }}`` context variable. You can also use
-``{{current_tab_id }}`` to access the id of the currently active tab.
+``{{ current_tab_id }}`` to access the id of the currently active tab.
 Here is an example template:
 
-.. code-block:: guess
+.. code-block:: html+django
 
     <div id="tab_navigation">
         <ul>
@@ -253,7 +253,7 @@ It's a good idea to put this template code in a file called e.g.
 :file:`blocks/tabination.html` and to include it everywhere you want
 the navigation to be displayed:
 
-.. code-block:: guess
+.. code-block:: html+django
 
     ...
     {% include "blocks/tabination.html" %}

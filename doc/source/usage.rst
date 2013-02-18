@@ -258,3 +258,76 @@ the navigation to be displayed:
     ...
     {% include "blocks/tabination.html" %}
     ...
+
+Multilevel navigation
+---------------------
+
+*django-tabination* can also be used for multilevel navigation. You can
+use the ``tab_parent`` attribute to connect two navigation levels. The
+attribute is defined at the **child base navigation class**. The
+following example has a tab called ``ParentTab`` which is at the first
+navigation level. The base class of the second navigation level is
+``ChildNavigationBaseTab``. This class defines the attribute
+``tab_parent`` to connect itself and all it's siblings with the parent
+navigation level.
+
+.. literalinclude:: ../../tabination/tests/test_multilevel.py
+    :lines: 9-54
+
+Multilevel template context
++++++++++++++++++++++++++++
+
+If you use multilevel navigation new values are added to your template
+context.
+
+If the current tab has a parent tab the following values are added:
+
+``parent_tab_id``
+    The ``tab_id`` of the parent tab.
+
+``parent_tabs``
+    Instances of all tabs at the parent level.
+
+The following variable is added to the template context if the current
+tab is a parent tab and has one or more children:
+
+``child_tabs``
+    A list of instances of all child tabs.
+
+This is an example how to use multilevel navigation in your templates:
+
+.. code-block:: html+django
+
+    <div id="tab_navigation">
+        {% if parent_tabs %}
+        <ul>
+                {% for tab in parent_tabs %}
+                    <li class="{{ tab.tab_classes|join:" " }}{% if tab.tab_id == parent_tab_id %} active{% endif %}">
+                        <a href="/{{ tab.tab_id }}/" {%if tab.tab_rel %}rel="{{ tab.tab_rel }}"{% endif %}>
+                        {{ tab.tab_label }}
+                        </a>
+                    </li>
+                {% endfor %}
+        </ul>
+        {% endif %}
+        <ul>
+            {% for tab in tabs %}
+                <li class="{{ tab.tab_classes|join:" " }}{% if tab.tab_id == current_tab_id %} active{% endif %}">
+                    <a href="/{{ tab.tab_id }}/" {%if tab.tab_rel %}rel="{{ tab.tab_rel }}"{% endif %}>
+                    {{ tab.tab_label }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% if child_tabs %}
+        <ul>
+                {% for tab in child_tabs %}
+                    <li class="{{ tab.tab_classes|join:" " }}">
+                        <a href="/{{ tab.tab_id }}/" {%if tab.tab_rel %}rel="{{ tab.tab_rel }}"{% endif %}>
+                        {{ tab.tab_label }}
+                        </a>
+                    </li>
+                {% endfor %}
+        </ul>
+        {% endif %}
+    </div>

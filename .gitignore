@@ -2,6 +2,7 @@
 *.pyc
 .coverage
 dist
+dummy_settings.py
 doc/build
 build
 htmlcov

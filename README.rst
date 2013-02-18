@@ -1,9 +1,13 @@
 django-tabination
 =================
 
+.. image:: https://secure.travis-ci.org/dbrgn/django-tabination.png?branch=master
+    :alt: Build status
+    :target: http://travis-ci.org/dbrgn/django-tabination
 
-*django-tabination* is a very lightweight (~35 SLOC) Django 1.4+ library that
-enables you to easily build your own tab navigation based on class based views.
+
+*django-tabination* is a lightweight (~50 SLOC) Django 1.4+ library that enables
+you to easily build your own tab navigation based on class based views.
 
 
 Docs
@@ -25,6 +29,10 @@ setup and usage, please refer to `the docs`_.
 
 Changelog
 ---------
+
+v0.2.0 (2013-02-18)
+
+- [add] Multilevel navigation
 
 v0.1.1 (2012-05-04)
 

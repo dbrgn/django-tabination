@@ -34,6 +34,12 @@ setup and usage, please refer to `the docs`_.
 Changelog
 ---------
 
+*django-tabination* uses `Semantic Versioning`_ 2.0.0-rc.1.
+
+v0.3.0 (2013-02-28)
+
+- [add] Sorting of tabs
+
 v0.2.0 (2013-02-18)
 
 - [add] Multilevel navigation
@@ -79,7 +85,7 @@ visual indent*) errors and allows a max line length of 99 characters per line.
 License
 -------
 
-Copyright 2012 - 2013 Danilo Bargen (http://dbrgn.ch/).
+Copyright 2012 - 2013 Danilo Bargen (http://dbrgn.ch/) and contributors.
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU Lesser General Public License as published by the Free
@@ -94,3 +100,4 @@ with this program. If not, see http://www.gnu.org/licenses/lgpl.html.
 
 
 .. _the docs: http://django-tabination.readthedocs.org/en/latest/installation.html
+.. _semantic versioning: http://semver.org/

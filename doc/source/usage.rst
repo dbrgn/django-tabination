@@ -270,6 +270,14 @@ This is an example how to use multilevel navigation in your templates:
         {% endif %}
     </div>
 
+Sorting tabs
+------------
+
+Tabs are sorted by their ``weight`` attribute automatically. Tabs with a
+lower weight are sorted before tabs with a higher weight. The default
+value of ``weight`` is 0. Negative values are also allowed and will be
+sorted before postive values. If two tabs have the same weight the
+natural order of the classes is used.
 
 .. _class based views: https://docs.djangoproject.com/en/1.4/topics/class-based-views/
 .. _generic view mixins: https://docs.djangoproject.com/en/1.4/ref/class-based-views/#mixins

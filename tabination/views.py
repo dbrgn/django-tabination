@@ -60,6 +60,8 @@ class TabView(TemplateView):
     """String that can be set as the HTML rel element."""
     tab_parent = None
     """Name of the parent tab class."""
+    weight = 0
+    """Weight of the tab, used for sorting the tabs."""
 
     def get_group_tabs(self):
         """Return instances of all other tabs that are members of the
@@ -86,6 +88,8 @@ class TabView(TemplateView):
 
         It's important that the tab are instanciated so that the
         instance methods can be used.
+
+        All tabs are sorted by their ``weight`` attribute.
         """
         # Get all group tabs
         tabs = [t for t in self.get_group_tabs()]
@@ -96,6 +100,9 @@ class TabView(TemplateView):
 
         # Remove all tabs that shouldn't be visible
         tabs = filter(lambda t: t.tab_visible, tabs)
+
+        # Sort the tabs in place
+        tabs.sort(key=lambda obj: obj.weight)
 
         return tabs
 

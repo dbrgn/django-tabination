@@ -104,64 +104,10 @@ you get only by dispatching the request (e.g. ``self.kwargs``), you can
 use the special attribute ``self.current_tab`` to gain access to the
 currently loaded tab. See also section :ref:`accessing-request-data`.
 
-Here is an example of a more sophisticated tab view hierarchy::
+Here is an example of a more sophisticated tab view hierarchy:
 
-    from django.contrib.auth.decorators import login_required
-    from django.utils import decorators
-    from django.utils.translation import ugettext as _
-
-    from tabination.views import TabView
-
-
-    class MainNavigationBaseTab(TabView):
-        """Base class for all main navigation tabs."""
-        tab_group = 'main_navigation'
-        tab_classes = ['main-navigation-tab']
-
-        def get_context_data(self, **kwargs):
-            context = super(MainNavigationBaseTab, self).get_context_data(**kwargs)
-            context['spam'] = 'ham'
-            return context
-
-
-    class SpamTab(MainNavigationBaseTab):
-        _is_tab = True
-        tab_id = 'spam'
-        tab_label = _('Spam')
-        template_name = 'tabs/spam_tab.html'
-
-
-    class HamTab(MainNavigationBaseTab):
-        _is_tab = True
-        tab_id = 'ham'
-        tab_label = _('Ham')
-        tab_rel = 'nofollow,noindex'
-        template_name = 'tabs/ham_tab.html'
-
-        @decorators.method_decorator(login_required)
-        def dispatch(self, *args, **kwargs):
-            """Make sure only authenticated users can access this tab."""
-            return super(HamTab, self).dispatch(*args, **kwargs)
-
-        @property
-        def tab_visible(self):
-            """Show tab only if current user is logged in."""
-            return self.current_tab.request.user.is_authenticated()
-
-        @property
-        def tab_classes(self):
-            """If user is logged in, set ``logged_in_only`` class."""
-            classes = super(HamTab, self).tab_classes[:]
-            if self.current_tab.request.user.is_authenticated():
-                classes += ['logged_in_only']
-            return classes
-
-
-    class HiddenTab(MainNavigationBaseTab):
-        _is_tab = True
-        tab_id = 'hidden'
-        template_name = 'tabs/hidden_tab.html'
-
+.. literalinclude:: ../../tabination/tests/visibility/views.py
+    :lines: 6-63
 
 In this example, a base tab class was created. Because it does not
 contain the ``_is_tab`` class attribute, it is not listed as a tab
@@ -263,8 +209,8 @@ navigation level. The base class of the second navigation level is
 ``tab_parent`` to connect itself and all it's siblings with the parent
 navigation level.
 
-.. literalinclude:: ../../tabination/tests/test_multilevel.py
-    :lines: 9-54
+.. literalinclude:: ../../tabination/tests/multilevel/views.py
+    :lines: 6-51
 
 Multilevel template context
 +++++++++++++++++++++++++++

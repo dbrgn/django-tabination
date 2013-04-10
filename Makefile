@@ -23,7 +23,7 @@ test:
 	coverage run --branch --source=tabination `which django-admin.py` test --settings=tabination.test_settings tabination
 
 report: flake8 test
-	coverage report --omit=tabination/test*
+	coverage report
 
 report-html: flake8 test
 	coverage html --omit=tabination/test*

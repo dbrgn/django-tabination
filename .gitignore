@@ -1,6 +1,7 @@
 *.egg-info
 *.pyc
 .coverage
+.coveralls.yml
 dist
 dummy_settings.py
 doc/build

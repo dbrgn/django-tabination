@@ -5,6 +5,9 @@ django-tabination
     :alt: Build status
     :target: http://travis-ci.org/dbrgn/django-tabination
 
+.. image:: https://coveralls.io/repos/dbrgn/django-tabination/badge.png?branch=master
+    :alt: Coverage
+    :target: https://coveralls.io/r/dbrgn/django-tabination
 
 *django-tabination* is a lightweight (~50 SLOC) Django 1.4+ library that enables
 you to easily build your own tab navigation based on class based views.

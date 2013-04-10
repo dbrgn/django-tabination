@@ -10,4 +10,7 @@ install:
 script:
     - make report
 after_script:
-    - coveralls
+    - if [ $TRAVIS_PYTHON_VERSION == "2.7" ]; then
+      pip install --quiet --use-mirrors coveralls
+      coveralls;
+      fi

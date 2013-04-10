@@ -3,8 +3,8 @@ source =
     tabination
 omit =
     tabination/tests/*
-    dummy_settings.py
-    test_settings.py
+    tabination/dummy_settings.py
+    tabination/test_settings.py
 
 [report]
 exclude_lines =

@@ -14,16 +14,14 @@ class AnonymousUserStub(object):
         return False
 
 
-class UserTestCase(unittest.TestCase):
-    """A TestCase with a RequestFactory."""
-    rf = RequestFactory()
-
+class FakeAuthRequestFactory(RequestFactory):
+    """A RequestFactory with fake authentication."""
     def get(self, path, data={}, login=False, **extra):
         """Performs a GET request.
 
         Use the login argument to get a request with a authenticated user.
         """
-        request = self.rf.get(path, data, **extra)
+        request = super(FakeAuthRequestFactory, self).get(path, data, **extra)
         if login:
             request.user = AuthenticatedUserStub()
         else:
@@ -31,10 +29,12 @@ class UserTestCase(unittest.TestCase):
         return request
 
 
-class VisibilityTest(UserTestCase):
+class VisibilityTest(unittest.TestCase):
+    rf = FakeAuthRequestFactory()
+
     def test_anonymous(self):
         """Test the group of tabs with an anonymous user."""
-        request = self.get('/')
+        request = self.rf.get('/')
         response = SpamTab.as_view()(request)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(1, len(response.context_data['tabs']))
@@ -43,13 +43,13 @@ class VisibilityTest(UserTestCase):
 
     def test_anonymous_redirect(self):
         """Accessing the protected HamTab results in a 302."""
-        request = self.get('/')
+        request = self.rf.get('/')
         response = HamTab.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
     def test_authenticated(self):
         """Test the group of tabs with an authenticated user."""
-        request = self.get('/', login=True)
+        request = self.rf.get('/', login=True)
         response = HamTab.as_view()(request)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(2, len(response.context_data['tabs']))

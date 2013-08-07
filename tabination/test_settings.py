@@ -17,4 +17,6 @@ INSTALLED_APPS = [
 
 SECRET_KEY = "kvi0q_snk4a0fd*&amp;tvx)klm@($x^)g+nlw-+y7@e)6$1xm6!ql"
 
+ROOT_URLCONF = 'tabination.test_urls'
+
 TEST_RUNNER = 'discover_runner.DiscoverRunner'

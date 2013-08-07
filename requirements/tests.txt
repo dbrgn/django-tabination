@@ -1,7 +1,0 @@
-coverage==3.6
-distribute==0.6.36
-django-discover-runner==0.2.2
-flake8==2.0
-mccabe==0.2.1
-pep8==1.4.5
-pyflakes==0.6.1

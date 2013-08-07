@@ -64,33 +64,40 @@ v0.1.0 (2012-04-04)
 - [add] Initial version
 
 
+Coding Guidelines
+-----------------
+
+`PEP8 <http://www.python.org/dev/peps/pep-0008/>`__ via `flake8
+<https://pypi.python.org/pypi/flake8>`_ with max-line-width set to 99 and
+E126-E128 ignored.
+
+
 Testing
 -------
 
-To setup a testing environment, you need to install Django and some additional
-dependencies::
+Testing is implemented using tox_ and pytest_. Violations of the coding
+guidelines will be counted as errors.
 
-    $ pip install Django
-    $ make install
+The easiest way to run the tests is by simply running ``tox``::
 
-To run the test suite, use ::
+    $ pip install tox
+    $ tox
 
-    $ make test
+This will run all tests in different virtualenvs with different configuration.
+Currently there are around 6 different tox environments. They can be listed
+with the ``-l`` switch::
 
-If you want to generate a coverage report, use ::
+    $ tox -l
+    py26-django14
+    py26-django15
+    py27-django14
+    py27-django15
+    pypy-django14
+    pypy-django15
 
-    $ make report
+To run the tests only in specific environments, use the ``-e`` switch::
 
-To see a HTML version of the coverage report, there's ::
-
-    $ make report-html
-
-Finally, to check conformance to the PEP8 coding standard, use ::
-
-    $ make flake8
-
-The flake8 configuration ignores E128 (*continuation line under-indented for
-visual indent*) errors and allows a max line length of 99 characters per line.
+    $ tox -e py27-django14,py26-django15
 
 
 License
@@ -112,3 +119,5 @@ with this program. If not, see http://www.gnu.org/licenses/lgpl.html.
 
 .. _the docs: http://django-tabination.readthedocs.org/en/latest/installation.html
 .. _semantic versioning: http://semver.org/
+.. _tox: http://tox.readthedocs.org/
+.. _pytest: http://pytest.org/

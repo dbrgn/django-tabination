@@ -5,6 +5,7 @@ omit =
     tabination/tests/*
     tabination/dummy_settings.py
     tabination/test_settings.py
+    __init__.py
 
 [report]
 exclude_lines =

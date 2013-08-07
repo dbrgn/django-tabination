@@ -9,3 +9,5 @@ build
 htmlcov
 *.swp
 *.log
+.cache
+.tox

@@ -232,40 +232,50 @@ tab is a parent tab and has one or more children:
 ``child_tabs``
     A list of instances of all child tabs.
 
-This is an example how to use multilevel navigation in your templates:
+Because the ``{{ current_tab }}`` and ``{{ current_tab_id }}`` context
+variables always refer to the globally current tab and not to the active
+tab in the current tab group, you would have to write different
+templates for the different levels of navigation to properly set an
+``active`` class on the tab item. To avoid this problem, you can use the
+``tab.group_current_tab`` attribute which is provided with every tab
+object and refers to the active tab of the current tab group, no whether
+where in the hierarchy the group is positioned.
+
+If you didn't quite understand the things above (it's complicated I
+know...), just take a look at the following example:
 
 .. code-block:: html+django
+
+    {# blocks/tab.html #}
+
+    <li class="{{ tab.tab_classes|join:" " }}{% if tab.tab_id == tab.group_current_tab.tab_id %} active{% endif %}">
+        <a href="/{{ tab.tab_id }}/" {%if tab.tab_rel %}rel="{{ tab.tab_rel }}"{% endif %}>
+        {{ tab.tab_label }}
+        </a>
+    </li>
+
+.. code-block:: html+django
+
+    {# blocks/navigation.html #}
 
     <div id="tab_navigation">
         {% if parent_tabs %}
         <ul>
                 {% for tab in parent_tabs %}
-                    <li class="{{ tab.tab_classes|join:" " }}{% if tab.tab_id == parent_tab_id %} active{% endif %}">
-                        <a href="/{{ tab.tab_id }}/" {%if tab.tab_rel %}rel="{{ tab.tab_rel }}"{% endif %}>
-                        {{ tab.tab_label }}
-                        </a>
-                    </li>
+                    {% include 'blocks/tab.html' %}
                 {% endfor %}
         </ul>
         {% endif %}
         <ul>
             {% for tab in tabs %}
-                <li class="{{ tab.tab_classes|join:" " }}{% if tab.tab_id == current_tab_id %} active{% endif %}">
-                    <a href="/{{ tab.tab_id }}/" {%if tab.tab_rel %}rel="{{ tab.tab_rel }}"{% endif %}>
-                    {{ tab.tab_label }}
-                    </a>
-                </li>
+                {% include 'blocks/tab.html' %}
             {% endfor %}
         </ul>
         {% if child_tabs %}
         <ul>
-                {% for tab in child_tabs %}
-                    <li class="{{ tab.tab_classes|join:" " }}">
-                        <a href="/{{ tab.tab_id }}/" {%if tab.tab_rel %}rel="{{ tab.tab_rel }}"{% endif %}>
-                        {{ tab.tab_label }}
-                        </a>
-                    </li>
-                {% endfor %}
+            {% for tab in child_tabs %}
+                {% include 'blocks/tab.html' %}
+            {% endfor %}
         </ul>
         {% endif %}
     </div>

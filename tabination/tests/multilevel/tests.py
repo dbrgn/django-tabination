@@ -13,11 +13,20 @@ class MultilevelTest(unittest.TestCase):
         request = self.rf.get('/')
         response = FirstChildTab.as_view()(request)
         context = response.context_data
+
+        # Check list of parent tabs
         self.assertIsInstance(context['parent_tabs'], list)
         self.assertEqual(len(context['parent_tabs']), 2)
         self.assertIsInstance(context['parent_tabs'][0], ParentTab)
         self.assertIsInstance(context['parent_tabs'][1], EmptyTab)
+
+        # Check important tab IDs
         self.assertEqual(context['parent_tab_id'], ParentTab.tab_id)
+        self.assertEqual(context['current_tab_id'], FirstChildTab.tab_id)
+
+        # Check references to current tab
+        self.assertEqual(context['tabs'][1].group_current_tab.tab_id, FirstChildTab.tab_id)
+        self.assertEqual(context['parent_tabs'][1].group_current_tab.tab_id, ParentTab.tab_id)
 
     def test_children(self):
         """Tests if a parent tab knows it's children."""

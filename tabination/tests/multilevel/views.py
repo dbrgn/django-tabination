@@ -51,6 +51,15 @@ class SecondChildTab(ChildNavigationBaseTab):
     template_name = 'second_child_tab.html'
 
 
+class HiddenChildTab(ChildNavigationBaseTab):
+    """This class has ``tab_visible`` set to ``False``."""
+    _is_tab = True
+    tab_id = 'hidden_child'
+    tab_label = 'Hidden Child'
+    template_name = 'hidden_child_tab.html'
+    tab_visible = False
+
+
 class BrokenChildNavigationBaseTab(TabView):
     """This class has a wrong tab_parent class."""
     tab_group = 'child_navigation'

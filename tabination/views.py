@@ -83,26 +83,35 @@ class TabView(TemplateView):
         """
         return self.tab_label is not None
 
-    def get_visible_tabs(self):
-        """Returns instances of all visible tabs of the tab's group.
+    def _process_tabs(self, tabs, current_tab, group_current_tab):
+        """Process and prepare tabs.
 
-        It's important that the tab are instanciated so that the
-        instance methods can be used.
+        This includes steps like updating references to the current tab,
+        filtering out hidden tabs, sorting tabs etc...
 
-        All tabs are sorted by their ``weight`` attribute.
+        Args:
+            tabs:
+                The list of tabs to process.
+            current_tab:
+                The reference to the currently loaded tab.
+            group_current_tab:
+                The reference to the active tab in the current tab group. For
+                parent tabs, this is different than for the current tab group.
+
+        Returns:
+            Processed list of tabs. Note that the method may have side effects.
+
         """
-        # Get all group tabs
-        tabs = [t for t in self.get_group_tabs()]
-
-        # Add reference to current tab to all other tabs
+        # Update references to the current tab
         for t in tabs:
-            t.current_tab = self
+            t.current_tab = current_tab
+            t.group_current_tab = group_current_tab
 
-        # Remove all tabs that shouldn't be visible
+        # Filter out hidden tabs
         tabs = filter(lambda t: t.tab_visible, tabs)
 
-        # Sort the tabs in place
-        tabs.sort(key=lambda obj: obj.weight)
+        # Sort remaining tabs in-place
+        tabs.sort(key=lambda t: t.weight)
 
         return tabs
 
@@ -127,17 +136,41 @@ class TabView(TemplateView):
         # Update the context with kwargs, TemplateView doesn't do this.
         context.update(kwargs)
 
+        # Add tabs and "current" references to context
+        process_tabs_kwargs = {
+            'tabs': self.get_group_tabs(),
+            'current_tab': self,
+            'group_current_tab': self,
+        }
+        context['tabs'] = self._process_tabs(**process_tabs_kwargs)
         context['current_tab_id'] = self.tab_id
-        context['tabs'] = self.get_visible_tabs()
 
+        # Handle parent tabs
         if self.tab_parent is not None:
+            # Verify that tab parent is valid
             if self.tab_parent not in self._registry:
                 msg = '%s has no attribute _is_tab' % self.tab_parent.__class__.__name__
                 raise ImproperlyConfigured(msg)
-            context['parent_tab_id'] = self.tab_parent().tab_id
-            context['parent_tabs'] = self.tab_parent().get_visible_tabs()
 
+            # Get parent tab instance
+            parent = self.tab_parent()
+
+            # Add parent tabs to context
+            process_parents_kwargs = {
+                'tabs': parent.get_group_tabs(),
+                'current_tab': self,
+                'group_current_tab': parent,
+            }
+            context['parent_tabs'] = self._process_tabs(**process_parents_kwargs)
+            context['parent_tab_id'] = parent.tab_id
+
+        # Handle child tabs
         if self.tab_id in self._children:
-            context['child_tabs'] = [t() for t in self._children[self.tab_id]]
+            process_children_kwargs = {
+                'tabs': [t() for t in self._children[self.tab_id]],
+                'current_tab': self,
+                'group_current_tab': None,
+            }
+            context['child_tabs'] = self._process_tabs(**process_children_kwargs)
 
         return context

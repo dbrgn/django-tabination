@@ -13,7 +13,7 @@ django-tabination
     :alt: PyPI download stats
     :target: https://crate.io/packages/django-tabination
 
-*django-tabination* is a lightweight (~50 SLOC) Django 1.4+ library that enables
+*django-tabination* is a lightweight (~70 SLOC) Django 1.4+ library that enables
 you to easily build your own tab navigation based on class based views.
 
 It supports code based creation of tabs directly in your views, conditional
@@ -42,6 +42,10 @@ Changelog
 ---------
 
 *django-tabination* uses `Semantic Versioning`_ 2.0.0-rc.1.
+
+v0.3.1 (2013-08-07)
+
+- [bug] Fixed bug #10 related to multilevel navigation
 
 v0.3.0 (2013-02-28)
 

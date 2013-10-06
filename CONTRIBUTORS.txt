@@ -8,3 +8,4 @@ Contributors
 ------------
 
 Markus Zapke-Gründemann (keimlink) – Patches
+Łukasz Mierzwa (prymitive) – Bugfixes

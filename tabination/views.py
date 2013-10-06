@@ -131,7 +131,7 @@ class TabView(TemplateView):
         If the current tab has children they are added to the template
         context as ``child_tabs``.
         """
-        context = super(TabView, self).get_context_data()
+        context = super(TabView, self).get_context_data(**kwargs)
 
         # Update the context with kwargs, TemplateView doesn't do this.
         context.update(kwargs)

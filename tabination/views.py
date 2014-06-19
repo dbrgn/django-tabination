@@ -5,6 +5,7 @@
 
 from django.core.exceptions import ImproperlyConfigured
 from django.views.generic import TemplateView
+from six import with_metaclass
 
 
 class _TabTracker(type):
@@ -24,7 +25,7 @@ class _TabTracker(type):
                 TabView._children[cls.tab_parent.tab_id].append(cls)
 
 
-class TabView(TemplateView):
+class TabView(with_metaclass(_TabTracker, TemplateView)):
     """This is a tab view that sets different tab properties and handles the
     tab groups.
 
@@ -41,7 +42,6 @@ class TabView(TemplateView):
 
     """
 
-    __metaclass__ = _TabTracker
     _registry = []
     """In here, references to all tabs are stored."""
     _children = {}
@@ -108,7 +108,7 @@ class TabView(TemplateView):
             t.group_current_tab = group_current_tab
 
         # Filter out hidden tabs
-        tabs = filter(lambda t: t.tab_visible, tabs)
+        tabs = list(filter(lambda t: t.tab_visible, tabs))
 
         # Sort remaining tabs in-place
         tabs.sort(key=lambda t: t.weight)
@@ -143,6 +143,8 @@ class TabView(TemplateView):
             'group_current_tab': self,
         }
         context['tabs'] = self._process_tabs(**process_tabs_kwargs)
+        # Expose the instance itself to ease access to any other property
+        context['current_tab'] = self
         context['current_tab_id'] = self.tab_id
 
         # Handle parent tabs

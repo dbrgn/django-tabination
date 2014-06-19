@@ -92,6 +92,7 @@ with the ``-l`` switch::
     py26-django15
     py27-django14
     py27-django15
+    py34-django16
     pypy-django14
     pypy-django15
 
@@ -103,7 +104,7 @@ To run the tests only in specific environments, use the ``-e`` switch::
 License
 -------
 
-Copyright 2012 - 2013 Danilo Bargen (http://dbrgn.ch/) and contributors.
+Copyright 2012 - 2014 Danilo Bargen (http://dbrgn.ch/) and contributors.
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU Lesser General Public License as published by the Free

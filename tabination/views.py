@@ -143,6 +143,8 @@ class TabView(with_metaclass(_TabTracker, TemplateView)):
             'group_current_tab': self,
         }
         context['tabs'] = self._process_tabs(**process_tabs_kwargs)
+        # Expose the instance itself to ease access to any other property
+        context['current_tab'] = self
         context['current_tab_id'] = self.tab_id
 
         # Handle parent tabs

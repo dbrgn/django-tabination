@@ -24,6 +24,9 @@ class MultilevelTest(unittest.TestCase):
         self.assertEqual(context['parent_tab_id'], ParentTab.tab_id)
         self.assertEqual(context['current_tab_id'], FirstChildTab.tab_id)
 
+        # Check exposed tab instance object
+        self.assertIsInstance(context['current_tab'], FirstChildTab)
+
         # Check references to current tab
         self.assertEqual(context['tabs'][1].group_current_tab.tab_id, FirstChildTab.tab_id)
         self.assertEqual(context['parent_tabs'][1].group_current_tab.tab_id, ParentTab.tab_id)

@@ -182,6 +182,11 @@ Here is an example template:
         </ul>
     </div>
 
+You also have ``{{ current_tab }}`` to access the CBV instance of the
+currently active tab if you need other properties without having to
+loop through the whole list of tabs, e.g. in case you need to build the
+``<h1>`` title of the active tab.
+
 Each item in the ``{{ tabs }}`` list is an instance of a tab in the same
 tab group as the current tab. Therefore you can use all class- and
 instance variables as well as all functions without arguments that are

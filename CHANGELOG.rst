@@ -26,3 +26,6 @@ v0.1.1 (2012-05-04)
 v0.1.0 (2012-04-04)
 
 - [add] Initial version
+
+
+.. _semantic versioning: http://semver.org/

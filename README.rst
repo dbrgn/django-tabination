@@ -78,6 +78,13 @@ To run the tests only in specific environments, use the ``-e`` switch::
     $ tox -e py27-django14,py26-django15
 
 
+Versioning
+----------
+
+*django-tabination* uses `Semantic Versioning`_ 2.0.0. See ``CHANGELOG.rst``
+for list of changes.
+
+
 License
 -------
 

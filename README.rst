@@ -20,6 +20,9 @@ It supports code based creation of tabs directly in your views, conditional
 displaying/hiding of a tab, translation of the tab labels, tab sorting,
 multi-level tab navigations and more.
 
+- Supported Django versions: 1.4, 1.5, 1.6
+- Supported Python versions: 2.6, 2.7, 3.3, 3.4, pypy2
+
 
 Docs
 ----

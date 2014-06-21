@@ -1,20 +1,25 @@
 """
-.. moduleauthor:: Danilo Bargen <gezuru@gmail.com>
+.. moduleauthor:: Danilo Bargen <mail@dbrgn.ch>
 
 """
+# -*- coding: utf-8 -*-
+from __future__ import print_function, division, absolute_import, unicode_literals
 
 from django.core.exceptions import ImproperlyConfigured
 from django.views.generic import TemplateView
+
 from six import with_metaclass
 
 
 class _TabTracker(type):
-    """Metaclass that tracks all subclasses with an _is_tab attribute.
+    """
+    Metaclass that tracks all subclasses with an _is_tab attribute.
 
     All tracked classes are stored inside self._registry.
 
     If multilevel navigation is used all relationships between a parent
     and it's children are stored in the self._children dictionary.
+
     """
     def __init__(cls, name, bases, attrs):
         if hasattr(cls, '_is_tab'):
@@ -26,8 +31,9 @@ class _TabTracker(type):
 
 
 class TabView(with_metaclass(_TabTracker, TemplateView)):
-    """This is a tab view that sets different tab properties and handles the
-    tab groups.
+    """
+    This is a tab view that sets different tab properties and handles the tab
+    groups.
 
     All attributes can be overridden with a Python property, e.g.::
 
@@ -41,7 +47,6 @@ class TabView(with_metaclass(_TabTracker, TemplateView)):
     ``self._registry`` list.
 
     """
-
     _registry = []
     """In here, references to all tabs are stored."""
     _children = {}
@@ -64,8 +69,10 @@ class TabView(with_metaclass(_TabTracker, TemplateView)):
     """Weight of the tab, used for sorting the tabs."""
 
     def get_group_tabs(self):
-        """Return instances of all other tabs that are members of the
-        tab's tab group."""
+        """
+        Return instances of all other tabs that are members of the tab's
+        tab group.
+        """
         if self.tab_group is None:
             raise ImproperlyConfigured(
                 "%s requires a definition of 'tab_group'" %
@@ -75,7 +82,8 @@ class TabView(with_metaclass(_TabTracker, TemplateView)):
 
     @property
     def tab_visible(self):
-        """Whether or not this tab is shown in the tab group. Or to be more exact,
+        """
+        Whether or not this tab is shown in the tab group. Or to be more exact,
         whether or not this tab is contained in ``{{ tabs }}``.
 
         The default behavior is to set the tab as visible if it has a label.
@@ -84,7 +92,8 @@ class TabView(with_metaclass(_TabTracker, TemplateView)):
         return self.tab_label is not None
 
     def _process_tabs(self, tabs, current_tab, group_current_tab):
-        """Process and prepare tabs.
+        """
+        Process and prepare tabs.
 
         This includes steps like updating references to the current tab,
         filtering out hidden tabs, sorting tabs etc...
@@ -116,7 +125,8 @@ class TabView(with_metaclass(_TabTracker, TemplateView)):
         return tabs
 
     def get_context_data(self, **kwargs):
-        """Adds tab information to context.
+        """
+        Adds tab information to context.
 
         To retrieve a list of all group tab instances, use
         ``{{ tabs }}`` in your template.
@@ -130,6 +140,7 @@ class TabView(with_metaclass(_TabTracker, TemplateView)):
 
         If the current tab has children they are added to the template
         context as ``child_tabs``.
+
         """
         context = super(TabView, self).get_context_data(**kwargs)
 

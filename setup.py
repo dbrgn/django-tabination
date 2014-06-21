@@ -17,7 +17,7 @@ setup(name='django-tabination',
       packages=['tabination'],
       platforms=['any'],
       classifiers=[
-          'Development Status :: 4 - Beta',
+          'Development Status :: 5 - Production/Stable',
           'Environment :: Web Environment',
           'Framework :: Django',
           'Intended Audience :: Developers',

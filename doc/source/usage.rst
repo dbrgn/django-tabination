@@ -162,6 +162,15 @@ it via the ``self.current_tab`` attribute, e.g.::
 Tab navigation template
 -----------------------
 
+Available context variables:
+
+- ``tabs``
+- ``current_tab_id``
+- ``parent_tabs``
+- ``parent_tab_id``
+- ``child_tabs``
+- ``view``
+
 In order to display the tabs in your templates, you need to create a tab
 list using the ``{{ tabs }}`` context variable. You can also use
 ``{{ current_tab_id }}`` to access the id of the currently active tab.
@@ -186,6 +195,9 @@ Each item in the ``{{ tabs }}`` list is an instance of a tab in the same
 tab group as the current tab. Therefore you can use all class- and
 instance variables as well as all functions without arguments that are
 defined in the |TabView| base class or in the extending class.
+
+If you want to access the current tab instance, you can simply use the ``view``
+variable which is provided by Django's `ContextMixin`_.
 
 It's a good idea to put this template code in a file called e.g.
 :file:`blocks/tabination.html` and to include it everywhere you want
@@ -289,8 +301,9 @@ value of ``weight`` is 0. Negative values are also allowed and will be
 sorted before postive values. If two tabs have the same weight the
 natural order of the classes is used.
 
-.. _class based views: https://docs.djangoproject.com/en/1.4/topics/class-based-views/
-.. _generic view mixins: https://docs.djangoproject.com/en/1.4/ref/class-based-views/#mixins
+.. _class based views: https://docs.djangoproject.com/en/dev/topics/class-based-views/
+.. _generic view mixins: https://docs.djangoproject.com/en/dev/ref/class-based-views/mixins/
 .. _properties: http://docs.python.org/library/functions.html#property
-.. _singleobjectmixin documentation: https://docs.djangoproject.com/en/1.4/ref/class-based-views/#singleobjectmixin
+.. _singleobjectmixin documentation: https://docs.djangoproject.com/en/dev/ref/class-based-views/mixins-single-object/
 .. _ticket #16074: https://code.djangoproject.com/ticket/16074
+.. _contextmixin: https://docs.djangoproject.com/en/dev/ref/class-based-views/mixins-simple/#django.views.generic.base.ContextMixin
